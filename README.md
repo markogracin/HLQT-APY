@@ -22,10 +22,7 @@ function calculateHLQTInterestRate(total_HLQT, total_staked_HLQT, tvl_in_HBAR, H
 Finally, we will get the APY with the previousely calculated interest rate. The compound value for staking HLQT is `365`, rapresenting every day in a year.
 ```ts
 function calculateAPY(interestRateDecimal, compoundingPeriodsPerYear) {
-    const apy = Math.pow(1 + (interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1;
-    
-    // APY in percentage
-    return apy * 100; 
+    return (Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1) * 100;
 }
 ```
 

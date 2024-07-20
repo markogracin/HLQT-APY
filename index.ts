@@ -10,8 +10,9 @@ function calculateHLQTInterestRate(total_HLQT, total_staked_HLQT, tvl_in_HBAR, H
 }
 
 function calculateAPY(interestRateDecimal, compoundingPeriodsPerYear) {
-    const apy = Math.pow(1 + (interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1;
-    return apy * 100;  // Convert back to percentage
+
+    // APY in percentage
+    return (Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1) * 100;
 }
 
 // variables
