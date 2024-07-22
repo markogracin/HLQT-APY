@@ -6,13 +6,16 @@ function calculateHLQTInterestRate(total_HLQT, total_staked_HLQT, tvl_in_HBAR, H
     const stakedProportion = total_staked_HLQT / total_HLQT;
 
     // Calculate the interest rate as a decimal
-    return (tvlInCHF / HCHF_in_stability_pool) * stakedProportion;  // Return as a decimal
+    return (tvlInCHF / HCHF_in_stability_pool) * stakedProportion;
 }
 
 function calculateAPY(interestRateDecimal, compoundingPeriodsPerYear) {
 
-    // APY in percentage
-    return (Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1) * 100;
+    // calculate APY
+    const apy =  Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1;
+
+    // convert APY to percentage
+    return (apy * 100).toFixed(2)
 }
 
 // variables
@@ -27,5 +30,5 @@ const compoundingPeriodsPerYear = 365;
 const interestRateDecimal = calculateHLQTInterestRate(total_HLQT, total_staked_HLQT, tvl_in_HBAR, HBAR_price_in_CHF, HCHF_in_stability_pool);
 console.log('Interest Rate (Decimal):', interestRateDecimal);
 
-const apy = calculateAPY(interestRateDecimal, compoundingPeriodsPerYear);
-console.log('APY (%):', apy);
+const APY = calculateAPY(interestRateDecimal, compoundingPeriodsPerYear);
+console.log('APY (%):', APY);

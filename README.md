@@ -22,8 +22,29 @@ function calculateHLQTInterestRate(total_HLQT, total_staked_HLQT, tvl_in_HBAR, H
 Finally, we will get the APY with the previousely calculated interest rate. The compound value for staking HLQT is `365`, rapresenting every day in a year.
 ```ts
 function calculateAPY(interestRateDecimal, compoundingPeriodsPerYear) {
-    return (Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1) * 100;
+
+    // calculate apy APY
+    const apy =  Math.pow((1 + interestRateDecimal / compoundingPeriodsPerYear), compoundingPeriodsPerYear) - 1;
+
+    // convert APY to percentage
+    return (apy * 100).toFixed(2)
 }
+```
+
+## Example with input / results
+In this example we have this values to get the interest rate:
+```ts
+const total_HLQT = 100000000; // Total supply of HLQT tokens https://docs.hliquity.org/deep-dive/hlqt-rewards-and-distribution
+const total_staked_HLQT = 402263.30341629;
+const tvl_in_HBAR = 22646.11329873;
+const HBAR_price_in_CHF = 0.06454315;
+const HCHF_in_stability_pool = 150.77329484;
+
+// Interest rate (in decimal): 
+0.03899687649937828
+
+// APY (in %)
+3.98
 ```
 
 ## Run the code
